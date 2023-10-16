@@ -12,41 +12,43 @@ namespace WebApplication1.Controllers
 
         private readonly IConfiguration _configuration;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger,IConfiguration configuration)
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,IConfiguration configuration/*IHttpClientFactory clientFactory*/ )
         {
 
 
             _logger = logger;
             _configuration = configuration;
+           /* _httpClientFactory = clientFactory;*/
+
         }
 
-
+/*
         [HttpGet("/mc2")]
 
         public async Task<ActionResult<string>> sendtToMS2()
         {
-            HttpClient httpClient = new HttpClient();
 
+            var HttpClient = _httpClientFactory.CreateClient();
 
-            httpClient.BaseAddress = new Uri(_configuration.GetSection("Urls")["MS2"]);
+            HttpClient.BaseAddress = new Uri(_configuration.GetSection("Urls")["MS2"]);
 
-            var a= await httpClient.GetAsync("/from1");
+            var a= await HttpClient.GetAsync("/from1");
 
             
 
 
 
             return await a.Content.ReadAsStringAsync();
-        }
+        }*/
 
         [HttpGet("")]
 
         public  string hello()
         {
-           
 
-
-            return "from ms1";
+            return "from ms1 revision";
         }
 
 

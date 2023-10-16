@@ -11,9 +11,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 /*builder.Services.AddDbContext<SQLContext>(options => options.UseMySQL(connectionString: builder.Configuration.GetConnectionString("Mysql")).LogTo(Console.Write));
 */
 var app = builder.Build();
+
+
 
 app.UseHttpLogging();
 
@@ -30,7 +33,7 @@ app.UseHttpsRedirection();
 
 
 
-
+app.UseCors(options=>options.AllowAnyOrigin());
 
 
 app.UseAuthorization();
